@@ -1,6 +1,9 @@
-text = input("Banned characters: ,/~\nEnter a string: ")
-
-out = "=rule "
+# check if there are any CLI arguments
+import sys
+if len(sys.argv) > 1:
+    text = " ".join(sys.argv[1:])
+else:
+    text = input("Banned characters: ,/~\nEnter a string: ")
 
 # space to ~
 words = text.replace(" ", "~")
@@ -14,6 +17,7 @@ wp1 = words[:int(len(words)/2)]
 wp2 = words[int(len(words)/2):]
 
 # generate a text that will be parsed by RIC
+out = "=rule "
 i = 0
 for w in range(int(len(wp1) / 2)):
     out += wp1[w * 2] + wp1[w * 2 + 1] + "/" + wp2[w * 2] + wp2[w * 2 + 1] + " "
